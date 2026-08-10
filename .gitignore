@@ -1,0 +1,14 @@
+# Compiled binaries
+pokedex
+*.exe
+*.out
+*.test
+
+# Editor/OS junk
+.idea/
+.vscode/
+.DS_Store
+
+# Go test cache / coverage
+*.cover
+*.prof
