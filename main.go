@@ -8,6 +8,14 @@ import (
 )
 
 func main() {
+	commands := map[string]cliCommand{
+		"exit": {
+			name:        "exit",
+			description: "Exit the Pokedex",
+			callback:    commandExit,
+		},
+	}
+	
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
@@ -23,10 +31,23 @@ func main() {
 		if len(words) == 0 {
 			continue
 		}
-		fmt.Printf("Your command was: %s\n", words[0])
+		if words[0] == "exit" {
+			commandExit()
+		}
 	}
+}
+
+type cliCommand struct {
+	name        string
+	description string
+	callback    func() error
 }
 
 func cleanInput(text string) []string {
 	return strings.Fields(strings.ToLower(text))
+}
+
+func commandExit() error {
+	fmt.Print("Closing the Pokedex... Goodbye!")
+	os.Exit(0)
 }
