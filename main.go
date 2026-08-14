@@ -15,7 +15,7 @@ func main() {
 			callback:    commandExit,
 		},
 	}
-	
+
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
@@ -31,8 +31,12 @@ func main() {
 		if len(words) == 0 {
 			continue
 		}
-		if words[0] == "exit" {
-			commandExit()
+		if cmd, ok := commands[words[0]]; ok {
+			if err := cmd.callback(); err != nil {
+				fmt.Fprintln(os.Stderr, err)
+			}
+		} else {
+			fmt.Println("Unknown command")
 		}
 	}
 }
@@ -50,4 +54,5 @@ func cleanInput(text string) []string {
 func commandExit() error {
 	fmt.Print("Closing the Pokedex... Goodbye!")
 	os.Exit(0)
+	return nil
 }
