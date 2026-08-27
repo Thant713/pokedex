@@ -4,11 +4,27 @@ pokedex
 *.out
 *.test
 
+# Go
+vendor/
+
 # Editor/OS junk
 .idea/
 .vscode/
 .DS_Store
+Thumbs.db
 
 # Go test cache / coverage
 *.cover
 *.prof
+coverage.out
+
+# Agent/tracking files
+.opencode/
+.scratch/
+MISSION.md
+RESOURCES.md
+NOTES.md
+learning-records/
+lessons/
+reference/
+assets/

@@ -20,6 +20,9 @@ func main() {
 				description: "Displays a help message",
 				callback:    commandHelp,
 			},
+			"map": {
+				
+			}
 		},
 	}
 	repl(cfg)
