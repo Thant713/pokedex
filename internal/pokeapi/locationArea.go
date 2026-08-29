@@ -1,6 +1,7 @@
-package main
+package pokeapi
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -32,7 +33,11 @@ func FetchLocationAreas(url string) (LocationAreasResponse, error) {
 		return LocationAreasResponse{}, fmt.Errorf("unexpected status: %d", resp.StatusCode)
 	}
 
-	// decode
+	var areas LocationAreasResponse
+	if err := json.NewDecoder(resp.Body).Decode(&areas); err != nil {
+		return LocationAreasResponse{}, err
+	}
 
 	defer resp.Body.Close()
+	return areas, nil
 }
