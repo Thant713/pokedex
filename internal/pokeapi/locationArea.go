@@ -29,6 +29,8 @@ func FetchLocationAreas(url string) (LocationAreasResponse, error) {
 		return LocationAreasResponse{}, err
 	}
 
+	defer resp.Body.Close()
+
 	if resp.StatusCode != http.StatusOK {
 		return LocationAreasResponse{}, fmt.Errorf("unexpected status: %d", resp.StatusCode)
 	}
@@ -37,7 +39,5 @@ func FetchLocationAreas(url string) (LocationAreasResponse, error) {
 	if err := json.NewDecoder(resp.Body).Decode(&areas); err != nil {
 		return LocationAreasResponse{}, err
 	}
-
-	defer resp.Body.Close()
 	return areas, nil
 }
