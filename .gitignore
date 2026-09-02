@@ -21,6 +21,9 @@ coverage.out
 # Agent/tracking files
 .opencode/
 .scratch/
+AGENTS.md
+CONTEXT.md
+docs/
 MISSION.md
 RESOURCES.md
 NOTES.md
@@ -28,3 +31,6 @@ learning-records/
 lessons/
 reference/
 assets/
+
+# Logs
+*.log
