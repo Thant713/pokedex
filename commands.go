@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/Thant713/pokedex/internal/pokeapi"
 )
 
 func commandExit(cfg *config) error {
@@ -26,4 +28,17 @@ func commandMap(cfg *config) error {
 	if cfg.Next != nil {
 		url = *cfg.Next
 	}
+
+	areas, err := pokeapi.FetchLocationAreas(url)
+	if err != nil {
+		return err
+	}
+
+	for _, area := range areas.Results {
+		fmt.Println(area.Name)
+	}
+
+	cfg.Next = areas.Next
+	cfg.Previous = areas.Previous
+	return nil
 }
